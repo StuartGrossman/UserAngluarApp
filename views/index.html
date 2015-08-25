@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html ng-app="app">
+<head>
+	<title>My App</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="bootstrap/dist/css/bootstrap.min.css">
+	<!-- <link rel="stylesheet" type="text/css" href="https://bootswatch.com/superhero/bootstrap.min.css"> -->
+	<link rel="stylesheet" type="text/css" href="/css/bootstrap_theme.css">
+	<link rel="stylesheet" type="text/css" href="/css/site.css">
+</head>
+<body class="container-fluid">
+	
+
+	<center>
+	<h1>Local Angular User App!</h1><br>
+	
+	</center>
+
+	<div ng-controller="controllerOne as vm" class="">
+		<form ng-submit="vm.register()" name="registration" class="col-sm-6 col-sm-offset-3" ng-show="vm.inputshow">
+
+			<div class="form-group">
+				<input type="text" placeholder="First Name" ng-required="true" name="first" ng-maxlength="50" class="centerinput form-control" ng-model="vm.user.first" ng-class="{'input-success':registration.first.$valid, 'input-fail':!registration.first.$valid}">
+			</div>
+
+			<div class="form-group">
+				<input type="text" placeholder="Last Name" ng-required="true" name="last" ng-maxlength="50" class="centerinput form-control" ng-model="vm.user.last" ng-class="{'input-success':registration.last.$valid, 'input-fail':!registration.last.$valid}">
+			</div>
+
+			<div class="form-group">
+				<input type="email" placeholder="Email" ng-required="true" name="email" ng-maxlength="50" class="centerinput form-control" ng-model="vm.user.email" ng-class="{'input-success':registration.email.$valid, 'input-fail':!registration.email.$valid}">
+			</div>
+
+			<div class="form-group">
+				<input type="text" placeholder="UserName" ng-required="true" name="username" ng-minlength="6" ng-maxlength="30" class="centerinput form-control" ng-model="vm.user.username" ng-class="{'input-success':registration.username.$valid, 'input-fail':!registration.username.$valid}">
+			</div>
+
+			<div class="form-group">
+				<input type="password" placeholder="Password" ng-required="true" name="password" ng-minlength="6" ng-maxlength="" class="centerinput form-control" ng-model="vm.user.password" ng-class="{'input-success':registration.password.$valid, 'input-fail':!registration.password.$valid}">
+			</div>
+
+			<div class="form-group">
+				<input type="password" placeholder="Confirm Password" ng-required="true" name="password_confirm" class="centerinput form-control" ng-model="vm.user.password_confirm" ng-class="{'input-success':registration.password_confirm.$valid,'input-fail':!registration.password_confirm.$valid}">
+			</div>
+
+			<!-- Secound Form grup -->
+			<div class="form-group"><br>
+				<center>
+					<button type="submit" ng-disabled="!registration.$valid" class="btn-block btn btn-success">Submit</button>
+				</center>
+			</div>
+
+		</form>
+
+		<!-- <div class="row col-sm-6 col-sm-offset-3" ng-show="vm.stateofInput">
+			<p>asdfdsaf</p>	
+		</div> -->
+		<div class="well container row col-sm-6 col-sm-offset-3" ng-repeat="user in vm.userArray track by $index">
+				<h2>{{user.first}}</h2>
+				<h2>{{user.last}}</h2>
+				<h2>{{user.email}}</h2>
+				<h2>{{user.username}}</h2>
+ 				<!-- <h2>{{user.password}}</h2>
+ 				<h2>{{user.password_confirm}}</h2> -->
+
+				<button class="btn btn-danger" ng-click="vm.userArray.splice($index, 1)"> Delete User</button>
+
+				<button class="btn btn-warning" ng-click="vm.startEdit($index)">Edit User</button>
+
+				<button class="btn btn-success" ng-click="vm.updateEdit($index)">Submit</button>
+			
+		</div>
+
+		<div ng-show="vm.stateofInput" class="col-sm-3">
+					<h3>Edit User</h3>
+					
+					<h5> First Name: <input class="form-control" ng-model="vm.user.first"></h5>
+					
+					<h5> Last Name: <input class="form-control" ng-model="vm.user.last"></h5>
+
+					<h5> Email: <input class="form-control" ng-model="vm.user.email"></h5>
+
+					<h5> UserName: <input class="form-control" ng-model="vm.user.username"></h5>
+
+					<h5> Password: <input class="form-control" ng-model="vm.user.password"></h5>
+					
+					<h5> Re-enter Pass: <input class="form-control" ng-model="vm.user.password_confirm"></h5>
+					<br>
+					
+			</div>
+		
+	</div>
+
+
+
+	<script type="text/javascript" src="/angular/angular.min.js"></script>
+	<script src="/javascript/app.js"></script>
+
+	</body>
+</html>
